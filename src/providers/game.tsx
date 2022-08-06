@@ -7,6 +7,7 @@ interface ContextProps {
   playerColor: PlayerNameAndColorInterface;
   playerName: PlayerNameAndColorInterface;
   isTheGameConfigured: boolean;
+  backToMenu: () => void;
 };
 
 const defaultState = {
@@ -14,6 +15,7 @@ const defaultState = {
   playerColor: playerColorInitialState,
   playerName: playerColorInitialState,
   isTheGameConfigured: false,
+  backToMenu: () => undefined,
 };
 
 interface ProviderProps {
@@ -39,13 +41,18 @@ export const GameProvider: React.FC<ProviderProps> = ({ children }) => {
     setIsTheGameConfigured(true);
   };
 
+  const backToMenu = () => {
+    setIsTheGameConfigured(false);
+  };
+
   return (
     <GameContext.Provider
       value={{
         capturePlayerData,
         playerColor,
         playerName,
-        isTheGameConfigured
+        isTheGameConfigured,
+        backToMenu
       }}
     >
       {children}
