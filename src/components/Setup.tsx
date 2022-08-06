@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import {
   Heading,
@@ -8,15 +9,13 @@ import {
   FormLabel,
   Input,
   Select,
-  VStack
+  VStack,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { useGame } from 'providers/game';
 import { PlayersDataInterface } from 'interfaces/game';
-
-interface ColorsProps {
-  name: string;
-  value: string;
-};
+import { avaliableColors } from 'const';
 
 const playersDataInitialState = {
   playerOneData: {
@@ -29,50 +28,30 @@ const playersDataInitialState = {
   }
 };
 
-const colorOptions: ColorsProps[] = [
-  {
-    name: 'Select a color...',
-    value: ''
-  },
-  {
-    name: 'Red',
-    value: '#f10000'
-  },
-  {
-    name: 'Yellow',
-    value: '#ece100'
-  },
-  {
-    name: 'Green',
-    value: '#008000'
-  },
-  {
-    name: 'Blue',
-    value: '#0000ff'
-  },
-  {
-    name: 'Orange',
-    value: '#ff8c00'
-  },
-  {
-    name: 'Pink',
-    value: '#ff1493'
-  },
-  {
-    name: 'Black',
-    value: '#000000'
-  }
-];
+const RenderSelectOptions: React.FC<{}> = () => <>
+  {avaliableColors.map((color) => <option value={color.value} key={color.value}>{color.name}</option>)}
+</>;
 
 const Setup: React.FC<{}> = () => {
   const { capturePlayerData } = useGame();
 
+  const [thereError, setThereError] = useState<string | null>(null);
+
   const initialValues: PlayersDataInterface = playersDataInitialState;
+
+  const validateForm = (values: PlayersDataInterface) => {
+    if (values.playerOneData.name.toLocaleLowerCase() === values.playerTwoData.name.toLocaleLowerCase()) {
+      return 'Player names must be different';
+    } else if (values.playerOneData.color === values.playerTwoData.color) {
+      return 'Player colors must be different';
+    }
+  };
 
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: (values) => {
-      capturePlayerData(values);
+      const findedErros = validateForm(values);
+      findedErros ? setThereError(findedErros) : capturePlayerData(values);
     }
   });
 
@@ -102,7 +81,7 @@ const Setup: React.FC<{}> = () => {
                   onChange={formik.handleChange}
                   value={formik.values.playerOneData.color}
                 >
-                  {colorOptions.map((color: ColorsProps) => <option value={color.value} key={color.value}>{color.name}</option>)}
+                  <RenderSelectOptions />
                 </Select>
               </FormControl>
             </VStack>
@@ -130,7 +109,7 @@ const Setup: React.FC<{}> = () => {
                   onChange={formik.handleChange}
                   value={formik.values.playerTwoData.color}
                 >
-                  {colorOptions.map((color: ColorsProps) => <option value={color.value} key={color.value}>{color.name}</option>)}
+                  <RenderSelectOptions />
                 </Select>
               </FormControl>
               <Button type="submit" colorScheme="purple" width="full">
@@ -138,6 +117,12 @@ const Setup: React.FC<{}> = () => {
               </Button>
             </VStack>
           </Box>
+          {thereError && <>
+            <Alert status='warning'>
+              <AlertIcon />
+                {thereError}
+            </Alert>
+          </>}
         </form>
     </Flex>
   );

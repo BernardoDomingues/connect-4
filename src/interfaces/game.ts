@@ -13,3 +13,8 @@ export interface PlayerNameAndColorInterface {
   1: string;
   2: string;
 };
+
+export interface ColorsProps {
+  name: string;
+  value: string;
+};
