@@ -1,5 +1,5 @@
 import { Player } from "types";
-import { ColorsProps } from "interfaces";
+import { ColorsProps, GameStatsInterface } from "interfaces";
 
 export const boardCols = 7;
 export const boardRows = 6;
@@ -48,3 +48,8 @@ export const avaliableColors: ColorsProps[] = [
     value: '#000000'
   }
 ];
+
+export const gameStats: GameStatsInterface = {
+  1: 0,
+  2: 0
+};

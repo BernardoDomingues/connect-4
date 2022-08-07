@@ -1,8 +1,12 @@
-import { boardCols } from "const";
+import {
+  boardCols,
+  playerColor as playerColorInitialState,
+  playerName as playerNameInitialState,
+  gameStats as gameStatsInitialState
+} from "const";
 import { PlayerNameAndColorInterface } from "interfaces";
 import { atom } from "recoil";
 import { Board, Player } from "types";
-import { playerColor as playerColorInitialState, playerName as playerNameInitialState } from 'const';
 
 const localStorageEffect = (key: string) => ({setSelf, onSet}: { setSelf: any; onSet: any }) => {
   const savedValue = localStorage.getItem(key)
@@ -10,7 +14,7 @@ const localStorageEffect = (key: string) => ({setSelf, onSet}: { setSelf: any; o
     setSelf(JSON.parse(savedValue));
   }
 
-  onSet((newValue: any, _: any, isReset: any) => {
+  onSet((newValue: any, _: any, isReset: boolean) => {
     isReset
       ? localStorage.removeItem(key)
       : localStorage.setItem(key, JSON.stringify(newValue));
@@ -62,5 +66,13 @@ export const isTheGameConfigured = atom<boolean>({
   default: false,
   effects: [
     localStorageEffect('isTheGameConfigured'),
+  ]
+});
+
+export const gameStats = atom<any>({
+  key: "gameStats",
+  default: gameStatsInitialState,
+  effects: [
+    localStorageEffect('gameStats'),
   ]
 });

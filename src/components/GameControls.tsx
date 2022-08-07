@@ -5,7 +5,7 @@ import { useRecoilValue, useResetRecoilState } from "recoil";
 import { boardState, gameOverState, playerState } from "state";
 
 const GameControls: FC = () => {
-  const { backToMenu } = useGame();
+  const { backToSetup } = useGame();
 
   const board = useRecoilValue(boardState);
   const resetBoard = useResetRecoilState(boardState);
@@ -25,7 +25,7 @@ const GameControls: FC = () => {
       </Button>
       <Button onClick={() => {
         handleReset();
-        backToMenu();
+        backToSetup();
       }}>
         Back to Setup
       </Button>

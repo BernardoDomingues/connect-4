@@ -9,12 +9,12 @@ import {
 
 interface ContextProps {
   capturePlayerData: (data: PlayersDataInterface) => void;
-  backToMenu: () => void;
+  backToSetup: () => void;
 };
 
 const defaultState = {
   capturePlayerData: () => undefined,
-  backToMenu: () => undefined,
+  backToSetup: () => undefined,
 };
 
 interface ProviderProps {
@@ -40,7 +40,7 @@ export const GameProvider: React.FC<ProviderProps> = ({ children }) => {
     setIsTheGameConfigured(true);
   };
 
-  const backToMenu = () => {
+  const backToSetup = () => {
     setIsTheGameConfigured(false);
   };
 
@@ -48,7 +48,7 @@ export const GameProvider: React.FC<ProviderProps> = ({ children }) => {
     <GameContext.Provider
       value={{
         capturePlayerData,
-        backToMenu
+        backToSetup
       }}
     >
       {children}

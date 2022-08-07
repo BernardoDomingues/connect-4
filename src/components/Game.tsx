@@ -5,6 +5,7 @@ import Setup from "components/Setup";
 import Board from "components/Board";
 import GameControls from "components/GameControls";
 import GameProgress from "components/GameProgress";
+import LeaderBoard from './LeaderBoard';
 
 const Game: React.FC<{}> = () => {
   const isTheGameConfigured = useRecoilValue(isTheGameConfiguredState);
@@ -15,6 +16,7 @@ const Game: React.FC<{}> = () => {
         <Board />
         <GameControls />
         <GameProgress />
+        <LeaderBoard />
       </> :
     <Setup />
   );
