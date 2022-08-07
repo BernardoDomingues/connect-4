@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import { PlayersDataInterface, PlayerNameAndColorInterface } from 'interfaces';
-import { playerColor as playerColorInitialState, playerName as playerNameInitialState } from 'const';
+import React from 'react';
+import { PlayersDataInterface } from 'interfaces';
+import { useSetRecoilState } from 'recoil';
+import {
+  isTheGameConfigured as isTheGameConfiguredState,
+  playerColor as playerColorState,
+  playerName as playerNameState
+} from 'state';
 
 interface ContextProps {
   capturePlayerData: (data: PlayersDataInterface) => void;
-  playerColor: PlayerNameAndColorInterface;
-  playerName: PlayerNameAndColorInterface;
-  isTheGameConfigured: boolean;
   backToMenu: () => void;
 };
 
 const defaultState = {
   capturePlayerData: () => undefined,
-  playerColor: playerColorInitialState,
-  playerName: playerColorInitialState,
-  isTheGameConfigured: false,
   backToMenu: () => undefined,
 };
 
@@ -25,9 +24,9 @@ interface ProviderProps {
 export const GameContext = React.createContext<ContextProps>(defaultState);
 
 export const GameProvider: React.FC<ProviderProps> = ({ children }) => {
-  const [playerColor, setPlayerColor] = useState<PlayerNameAndColorInterface>(playerColorInitialState);
-  const [playerName, setPlayerName] = useState<PlayerNameAndColorInterface>(playerNameInitialState);
-  const [isTheGameConfigured, setIsTheGameConfigured] = useState<boolean>(false);
+  const setIsTheGameConfigured = useSetRecoilState(isTheGameConfiguredState);
+  const setPlayerColor = useSetRecoilState(playerColorState);
+  const setPlayerName = useSetRecoilState(playerNameState);
 
   const capturePlayerData = (data: PlayersDataInterface) => {
     setPlayerColor({
@@ -49,9 +48,6 @@ export const GameProvider: React.FC<ProviderProps> = ({ children }) => {
     <GameContext.Provider
       value={{
         capturePlayerData,
-        playerColor,
-        playerName,
-        isTheGameConfigured,
         backToMenu
       }}
     >

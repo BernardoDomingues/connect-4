@@ -1,12 +1,13 @@
 import React from 'react';
-import { useGame } from 'providers/game';
+import { useRecoilValue } from "recoil";
+import { isTheGameConfigured as isTheGameConfiguredState } from "state";
 import Setup from "components/Setup";
 import Board from "components/Board";
 import GameControls from "components/GameControls";
 import GameProgress from "components/GameProgress";
 
 const Game: React.FC<{}> = () => {
-  const { isTheGameConfigured } = useGame();
+  const isTheGameConfigured = useRecoilValue(isTheGameConfiguredState);
 
   return (
     isTheGameConfigured ?

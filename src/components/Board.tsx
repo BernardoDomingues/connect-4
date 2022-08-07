@@ -1,22 +1,20 @@
 import { Circle, Flex } from "@chakra-ui/react";
 import { boardRows } from "const";
 import { usePlayPiece } from "hooks";
-import { useGame } from "providers/game";
 import { FC } from "react";
 import { useRecoilValue } from "recoil";
-import { boardState, gameOverState, playerState } from "state";
+import { boardState, gameOverState, playerState, playerColor as playerColorState } from "state";
 import { Player } from "types";
 
 const padCol = (col: number[]): number[] =>
   col.join("").padEnd(boardRows, "0").split("").map(Number);
 
 const Board: FC = () => {
-  const { playerColor } = useGame();
-
   const play = usePlayPiece();
   const board = useRecoilValue(boardState);
   const player = useRecoilValue(playerState);
   const gameOver = useRecoilValue(gameOverState);
+  const playerColor = useRecoilValue(playerColorState);
 
   return (
     <Flex justify="center">
