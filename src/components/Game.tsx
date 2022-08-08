@@ -1,5 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
+import { Container, VStack } from "@chakra-ui/react";
 import { isTheGameConfigured as isTheGameConfiguredState } from "state";
 import Setup from "components/Setup";
 import Board from "components/Board";
@@ -12,12 +13,12 @@ const Game: React.FC<{}> = () => {
 
   return (
     isTheGameConfigured ?
-      <>
+      <Container py={4} as={VStack}>
         <GameProgress />
         <Board />
         <GameControls />
         <LeaderBoard />
-      </> :
+      </Container> :
     <Setup />
   );
 };

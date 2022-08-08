@@ -1,4 +1,4 @@
-import { ChakraProvider, Container, VStack } from "@chakra-ui/react";
+import { ChakraProvider, Center,Heading } from "@chakra-ui/react";
 import { GameProvider } from "providers/game";
 import { FC } from "react";
 import { RecoilRoot } from "recoil";
@@ -9,10 +9,13 @@ const App: FC = () => (
   <ChakraProvider>
     <RecoilRoot>
       <GameProvider>
-        <Container py={4} as={VStack}>
+        <>
           <ThemeTogglerButton />
+          <Center>
+            <Heading margin={4}>Connect 4</Heading>
+          </Center>
           <Game />
-        </Container>
+        </>
       </GameProvider>
     </RecoilRoot>
   </ChakraProvider>

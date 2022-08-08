@@ -1,6 +1,5 @@
 import { FC } from "react";
 import {
-  Heading,
   TableContainer,
   Table,
   Thead,
