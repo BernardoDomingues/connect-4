@@ -54,7 +54,6 @@ export const GameProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const updateStats = () => {
-    console.log(player);
     const newGameStats = gameStats;
     if (player === 1) {
       setGameStats({1: newGameStats[1] + 1, 2: newGameStats[2] })
