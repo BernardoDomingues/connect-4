@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useFormik } from 'formik';
+import { useState } from "react";
+import { useFormik } from "formik";
 import {
   Heading,
   Box,
@@ -13,9 +13,9 @@ import {
   Alert,
   AlertIcon,
 } from "@chakra-ui/react";
-import { useGame } from 'providers/game';
-import { PlayersDataInterface } from 'interfaces/game';
-import { avaliableColors } from 'const';
+import { useGame } from "providers/game";
+import { PlayersDataInterface } from "interfaces/game";
+import { avaliableColors } from "const";
 
 const playersDataInitialState = {
   playerOneData: {
@@ -40,7 +40,6 @@ const Setup: React.FC<{}> = () => {
   const initialValues: PlayersDataInterface = playersDataInitialState;
 
   const validateForm = (values: PlayersDataInterface) => {
-    console.log(values.playerOneData.name || values.playerTwoData.name === '');
     if(values.playerOneData.name === '' || values.playerTwoData.name === '') {
       console.log('to aqui');
       return 'Input Player´s name';
@@ -118,7 +117,7 @@ const Setup: React.FC<{}> = () => {
                   <RenderSelectOptions />
                 </Select>
               </FormControl>
-              <Button type="submit" colorScheme="purple" width="full">
+              <Button  type="submit" colorScheme="teal" width="full">
                 Start Game
               </Button>
             </VStack>
