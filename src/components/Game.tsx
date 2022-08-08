@@ -13,9 +13,9 @@ const Game: React.FC<{}> = () => {
   return (
     isTheGameConfigured ?
       <>
+        <GameProgress />
         <Board />
         <GameControls />
-        <GameProgress />
         <LeaderBoard />
       </> :
     <Setup />

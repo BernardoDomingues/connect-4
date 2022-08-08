@@ -62,8 +62,14 @@ const Setup: React.FC<{}> = () => {
   return (
     <Flex align="center" justify="center">
         <form onSubmit={formik.handleSubmit}>
-          <Box p={10} rounded="md">
-            <VStack spacing={4} align="flex-start">
+          {thereError && <>
+            <Alert status='warning'>
+              <AlertIcon />
+                {thereError}
+            </Alert>
+          </>}
+          <Box p={8} rounded="md" borderWidth={1} borderRadius={8} boxShadow="lg" m="10px">
+            <VStack spacing={4}>
               <Heading>Player One</Heading>
               <FormControl>
                 <FormLabel htmlFor="playerOneData.name">Name</FormLabel>
@@ -90,8 +96,8 @@ const Setup: React.FC<{}> = () => {
               </FormControl>
             </VStack>
           </Box>
-          <Box p={10} rounded="md">
-            <VStack spacing={4} align="flex-start">
+          <Box p={8} rounded="md" borderWidth={1} borderRadius={8} boxShadow="lg" m="10px">
+            <VStack spacing={4}>
               <Heading>Player Two</Heading>
               <FormControl>
                 <FormLabel htmlFor="playerTwoData.name">Name</FormLabel>
@@ -116,17 +122,13 @@ const Setup: React.FC<{}> = () => {
                   <RenderSelectOptions />
                 </Select>
               </FormControl>
-              <Button  type="submit" colorScheme="teal" width="full">
-                Start Game
-              </Button>
             </VStack>
           </Box>
-          {thereError && <>
-            <Alert status='warning'>
-              <AlertIcon />
-                {thereError}
-            </Alert>
-          </>}
+          <Box m={4}>
+            <Button  type="submit" colorScheme="teal" width="full">
+              Start Game
+            </Button>
+          </Box>
         </form>
     </Flex>
   );

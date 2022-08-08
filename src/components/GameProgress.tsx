@@ -10,7 +10,7 @@ const GameProgress: FC = () => {
   const name = playerName[player];
 
   return (
-    <Heading as="h3" size="lg">
+    <Heading as="h1">
       {gameOver ? `${name} wins!` : `${name}'s turn`}
     </Heading>
   );

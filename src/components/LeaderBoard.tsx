@@ -18,9 +18,13 @@ const LeaderBoard: FC = () => {
 
   return (
     <>
-      <Heading>Leaderboard</Heading>
       <TableContainer>
-        <Table size='sm'>
+        <Table>
+          <Thead>
+            <Tr>
+              <Th colSpan={2} textAlign="center">Leaderboard</Th>
+            </Tr>
+          </Thead>
           <Thead>
             <Tr>
               <Th>Player</Th>
