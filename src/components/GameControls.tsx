@@ -1,4 +1,5 @@
-import { Button } from "@chakra-ui/react";
+import { Button, useColorMode } from "@chakra-ui/react";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useGame } from "providers/game";
 import { FC } from "react";
 import { useRecoilValue, useResetRecoilState } from "recoil";
@@ -6,6 +7,7 @@ import { boardState, gameOverState, playerState } from "state";
 
 const GameControls: FC = () => {
   const { backToSetup } = useGame();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const board = useRecoilValue(boardState);
   const resetBoard = useResetRecoilState(boardState);
@@ -28,6 +30,9 @@ const GameControls: FC = () => {
         backToSetup();
       }}>
         Back to Setup
+      </Button>
+      <Button borderRadius="20px" onClick={toggleColorMode}>
+        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
       </Button>
     </>
   );
