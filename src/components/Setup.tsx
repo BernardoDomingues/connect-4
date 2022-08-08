@@ -12,6 +12,8 @@ import {
   VStack,
   Alert,
   AlertIcon,
+  Grid,
+  Center,
 } from "@chakra-ui/react";
 import { useGame } from "providers/game";
 import { PlayersDataInterface } from "interfaces/game";
@@ -62,73 +64,75 @@ const Setup: React.FC<{}> = () => {
   return (
     <Flex align="center" justify="center">
         <form onSubmit={formik.handleSubmit}>
-          {thereError && <>
+          {thereError && <Center margin={4}>
             <Alert status='warning'>
               <AlertIcon />
                 {thereError}
             </Alert>
-          </>}
-          <Box p={8} rounded="md" borderWidth={1} borderRadius={8} boxShadow="lg" m="10px">
-            <VStack spacing={4}>
-              <Heading>Player One</Heading>
-              <FormControl>
-                <FormLabel htmlFor="playerOneData.name">Name</FormLabel>
-                <Input
-                  id="playerOneData.name"
-                  name="playerOneData.name"
-                  type="text"
-                  variant="filled"
-                  onChange={formik.handleChange}
-                  value={formik.values.playerOneData.name}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel htmlFor="playerOneData.color">Color</FormLabel>
-                <Select
-                  id="playerOneData.color"
-                  name="playerOneData.color"
-                  variant="filled"
-                  onChange={formik.handleChange}
-                  value={formik.values.playerOneData.color}
-                >
-                  <RenderSelectOptions />
-                </Select>
-              </FormControl>
-            </VStack>
-          </Box>
-          <Box p={8} rounded="md" borderWidth={1} borderRadius={8} boxShadow="lg" m="10px">
-            <VStack spacing={4}>
-              <Heading>Player Two</Heading>
-              <FormControl>
-                <FormLabel htmlFor="playerTwoData.name">Name</FormLabel>
-                <Input
-                  id="playerTwoData.name"
-                  name="playerTwoData.name"
-                  type="text"
-                  variant="filled"
-                  onChange={formik.handleChange}
-                  value={formik.values.playerTwoData.name}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel htmlFor="playerTwoData.color">Color</FormLabel>
-                <Select
-                  id="playerTwoData.color"
-                  name="playerTwoData.color"
-                  variant="filled"
-                  onChange={formik.handleChange}
-                  value={formik.values.playerTwoData.color}
-                >
-                  <RenderSelectOptions />
-                </Select>
-              </FormControl>
-            </VStack>
-          </Box>
-          <Box m={4}>
-            <Button  type="submit" colorScheme="teal" width="full">
+          </Center>}
+          <Grid gridTemplateColumns={["1fr", "1fr", "1fr 1fr"]}>
+            <Box p={8} rounded="md" borderWidth={1} borderRadius={8} boxShadow="lg" m="10px">
+              <VStack spacing={4}>
+                <Heading>Player One</Heading>
+                <FormControl>
+                  <FormLabel htmlFor="playerOneData.name">Name</FormLabel>
+                  <Input
+                    id="playerOneData.name"
+                    name="playerOneData.name"
+                    type="text"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.playerOneData.name}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel htmlFor="playerOneData.color">Color</FormLabel>
+                  <Select
+                    id="playerOneData.color"
+                    name="playerOneData.color"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.playerOneData.color}
+                  >
+                    <RenderSelectOptions />
+                  </Select>
+                </FormControl>
+              </VStack>
+            </Box>
+            <Box p={8} rounded="md" borderWidth={1} borderRadius={8} boxShadow="lg" m="10px">
+              <VStack spacing={4}>
+                <Heading>Player Two</Heading>
+                <FormControl>
+                  <FormLabel htmlFor="playerTwoData.name">Name</FormLabel>
+                  <Input
+                    id="playerTwoData.name"
+                    name="playerTwoData.name"
+                    type="text"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.playerTwoData.name}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel htmlFor="playerTwoData.color">Color</FormLabel>
+                  <Select
+                    id="playerTwoData.color"
+                    name="playerTwoData.color"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.playerTwoData.color}
+                  >
+                    <RenderSelectOptions />
+                  </Select>
+                </FormControl>
+              </VStack>
+            </Box>
+          </Grid>
+          <Center margin={4}>
+            <Button  type="submit" colorScheme="teal" width={60}>
               Start Game
             </Button>
-          </Box>
+          </Center>
         </form>
     </Flex>
   );
