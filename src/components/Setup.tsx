@@ -40,7 +40,13 @@ const Setup: React.FC<{}> = () => {
   const initialValues: PlayersDataInterface = playersDataInitialState;
 
   const validateForm = (values: PlayersDataInterface) => {
-    if (values.playerOneData.name.toLocaleLowerCase() === values.playerTwoData.name.toLocaleLowerCase()) {
+    console.log(values.playerOneData.name || values.playerTwoData.name === '');
+    if(values.playerOneData.name === '' || values.playerTwoData.name === '') {
+      console.log('to aqui');
+      return 'Input Player´s name';
+    } else if (values.playerOneData.color === '' || values.playerTwoData.color === '') {
+      return 'Input Player´s color';
+    } else if (values.playerOneData.name.toLocaleLowerCase() === values.playerTwoData.name.toLocaleLowerCase()) {
       return 'Player names must be different';
     } else if (values.playerOneData.color === values.playerTwoData.color) {
       return 'Player colors must be different';
