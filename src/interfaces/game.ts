@@ -22,4 +22,4 @@ export interface ColorsProps {
 export interface GameStatsInterface {
   1: number;
   2: number;
-}
+};

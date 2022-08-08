@@ -1,4 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { avaliableColors } from "const";
+import { useGame } from "providers/game";
+import { PlayersDataInterface } from "interfaces";
 import { useFormik } from "formik";
 import {
   Heading,
@@ -15,9 +18,6 @@ import {
   Grid,
   Center,
 } from "@chakra-ui/react";
-import { useGame } from "providers/game";
-import { PlayersDataInterface } from "interfaces/game";
-import { avaliableColors } from "const";
 
 const playersDataInitialState = {
   playerOneData: {
@@ -62,14 +62,16 @@ const Setup: React.FC<{}> = () => {
   });
 
   return (
-    <Flex align="center" justify="center">
+    <Flex justify="center">
         <form onSubmit={formik.handleSubmit}>
-          {thereError && <Center margin={4}>
-            <Alert status='warning'>
-              <AlertIcon />
-                {thereError}
-            </Alert>
-          </Center>}
+          {thereError &&
+            <Center margin={4}>
+              <Alert status='warning'>
+                <AlertIcon />
+                  {thereError}
+              </Alert>
+            </Center>
+          }
           <Grid gridTemplateColumns={["1fr", "1fr", "1fr 1fr"]}>
             <Box p={8} rounded="md" borderWidth={1} borderRadius={8} boxShadow="lg" m="10px">
               <VStack spacing={4}>

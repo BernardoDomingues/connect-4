@@ -1,11 +1,12 @@
+import React from "react";
 import { ChakraProvider, Center,Heading } from "@chakra-ui/react";
-import { GameProvider } from "providers/game";
-import { FC } from "react";
 import { RecoilRoot } from "recoil";
-import Game from "components/Game";
-import ThemeTogglerButton from "./ThemeTogglerButton";
+import { GameProvider } from "providers/game";
 
-const App: FC = () => (
+import Game from "components/Game";
+import ThemeTogglerButton from "components/ThemeTogglerButton";
+
+const App: React.FC = () => (
   <ChakraProvider>
     <RecoilRoot>
       <GameProvider>

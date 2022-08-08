@@ -1,8 +1,8 @@
-import { FC } from "react";
-import { Box, Button, useColorMode } from "@chakra-ui/react";
+import React from "react";
+import { useColorMode, Box, Button } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
-const ThemeTogglerButton: FC = () => {
+const ThemeTogglerButton: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (

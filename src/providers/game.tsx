@@ -1,5 +1,6 @@
 import React from "react";
 import { PlayersDataInterface } from "interfaces";
+import { gameStats as gameStatsInitialState } from "const";
 import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
 import {
   isTheGameConfigured as isTheGameConfiguredState,
@@ -8,8 +9,6 @@ import {
   gameStats as gameStatsState,
   playerState
 } from "state";
-
-import { gameStats as gameStatsInitialState } from "const";
 
 interface ContextProps {
   capturePlayerData: (data: PlayersDataInterface) => void;
@@ -34,7 +33,7 @@ export const GameProvider: React.FC<ProviderProps> = ({ children }) => {
   const setIsTheGameConfigured = useSetRecoilState(isTheGameConfiguredState);
   const setPlayerColor = useSetRecoilState(playerColorState);
   const setPlayerName = useSetRecoilState(playerNameState);
-  const player = useRecoilValue(playerState)
+  const player = useRecoilValue(playerState);
 
   const capturePlayerData = (data: PlayersDataInterface) => {
     setPlayerColor({

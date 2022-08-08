@@ -1,4 +1,6 @@
-import { FC } from "react";
+import React from "react";
+import { useRecoilValue } from "recoil";
+import { playerName, gameStats } from "state";
 import {
   TableContainer,
   Table,
@@ -8,12 +10,10 @@ import {
   Tbody,
   Td,
 } from "@chakra-ui/react";
-import { useRecoilValue } from "recoil";
-import { playerName, gameStats } from "state";
 
-const LeaderBoard: FC = () => {
+const LeaderBoard: React.FC = () => {
   const player = useRecoilValue(playerName);
-  const stats = useRecoilValue(gameStats)
+  const stats = useRecoilValue(gameStats);
 
   return (
     <>

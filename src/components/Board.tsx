@@ -1,15 +1,20 @@
-import { Circle, Flex } from "@chakra-ui/react";
 import { boardRows } from "const";
+import React from "react";
 import { usePlayPiece } from "hooks";
-import { FC } from "react";
 import { useRecoilValue } from "recoil";
-import { boardState, gameOverState, playerState, playerColor as playerColorState } from "state";
+import {
+  boardState,
+  gameOverState,
+  playerState,
+  playerColor as playerColorState
+} from "state";
+import { Flex, Circle } from "@chakra-ui/react";
 import { Player } from "types";
 
 const padCol = (col: number[]): number[] =>
   col.join("").padEnd(boardRows, "0").split("").map(Number);
 
-const Board: FC = () => {
+const Board: React.FC = () => {
   const play = usePlayPiece();
   const board = useRecoilValue(boardState);
   const player = useRecoilValue(playerState);
